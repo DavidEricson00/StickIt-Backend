@@ -26,23 +26,27 @@ public class NoteController {
             @RequestBody @Valid NoteRequestDTO dto
     ) {
         NoteResponseDTO response = noteService.create(dto);
-        return ResponseEntity.status(HttpStatus.CREATED).body(response);
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body(noteService.create(dto));
     }
 
     @GetMapping
-    public List<NoteResponseDTO> getAllNotes() {
-        return noteService.findAll();
+    public ResponseEntity<List<NoteResponseDTO>> getAllNotes() {
+        return ResponseEntity.ok(noteService.findAll());
     }
 
     @PutMapping("/{id}")
-    public NoteResponseDTO updateNote(
+    public ResponseEntity<NoteResponseDTO> updateNote(
             @PathVariable Long id,
-            @RequestBody @Valid NoteRequestDTO dto) {
-        return noteService.update(id, dto);
+            @RequestBody @Valid NoteRequestDTO dto
+    ) {
+        return ResponseEntity.ok(noteService.update(id, dto));
     }
 
     @DeleteMapping("/{id}")
-    public void deleteNote(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteNote(@PathVariable Long id) {
         noteService.delete(id);
+        return ResponseEntity.noContent().build();
     }
 }
