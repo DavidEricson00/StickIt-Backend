@@ -53,4 +53,9 @@ public class Note {
     public LocalDateTime getCreatedAt() {
         return createdAt;
     }
+
+    @PrePersist
+    protected void prePersist() {
+        this.createdAt = LocalDateTime.now();
+    }
 }
