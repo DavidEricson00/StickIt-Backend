@@ -1,11 +1,10 @@
 package com.stickit.stickit.controller;
 
-import com.stickit.stickit.dto.NoteRequestDTO;
+import com.stickit.stickit.dto.NoteCreateDTO;
 import com.stickit.stickit.dto.NoteResponseDTO;
-import com.stickit.stickit.model.Note;
+import com.stickit.stickit.dto.NoteUpdateDTO;
 import com.stickit.stickit.service.NoteService;
 import jakarta.validation.Valid;
-import org.aspectj.weaver.ast.Not;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -23,12 +22,12 @@ public class NoteController {
 
     @PostMapping
     public ResponseEntity<NoteResponseDTO> create(
-            @RequestBody @Valid NoteRequestDTO dto
+            @RequestBody @Valid NoteCreateDTO dto
     ) {
         NoteResponseDTO response = noteService.create(dto);
         return ResponseEntity
                 .status(HttpStatus.CREATED)
-                .body(noteService.create(dto));
+                .body(response);
     }
 
     @GetMapping
@@ -39,7 +38,7 @@ public class NoteController {
     @PutMapping("/{id}")
     public ResponseEntity<NoteResponseDTO> updateNote(
             @PathVariable Long id,
-            @RequestBody @Valid NoteRequestDTO dto
+            @RequestBody NoteUpdateDTO dto
     ) {
         return ResponseEntity.ok(noteService.update(id, dto));
     }

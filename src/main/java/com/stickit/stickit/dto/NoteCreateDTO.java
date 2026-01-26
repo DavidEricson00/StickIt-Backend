@@ -2,7 +2,7 @@ package com.stickit.stickit.dto;
 
 import jakarta.validation.constraints.NotBlank;
 
-public class NoteRequestDTO {
+public class NoteCreateDTO {
     @NotBlank(message = "Title is required")
     private String title;
 

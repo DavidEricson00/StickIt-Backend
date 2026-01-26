@@ -1,7 +1,8 @@
 package com.stickit.stickit.service;
 
-import com.stickit.stickit.dto.NoteRequestDTO;
+import com.stickit.stickit.dto.NoteCreateDTO;
 import com.stickit.stickit.dto.NoteResponseDTO;
+import com.stickit.stickit.dto.NoteUpdateDTO;
 import com.stickit.stickit.exception.ResourceNotFoundException;
 import com.stickit.stickit.model.Note;
 import com.stickit.stickit.repository.NoteRepository;
@@ -26,7 +27,7 @@ public class NoteService {
         );
     }
 
-    public NoteResponseDTO create(NoteRequestDTO dto){
+    public NoteResponseDTO create(NoteCreateDTO dto){
         Note note = new Note();
         note.setTitle(dto.getTitle());
         note.setContent(dto.getContent());
@@ -42,17 +43,26 @@ public class NoteService {
                 .toList();
     }
 
-    public NoteResponseDTO update(Long id, NoteRequestDTO dto){
+    public NoteResponseDTO update(Long id, NoteUpdateDTO dto) {
         Note note = noteRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Note not found"));
 
-        note.setTitle(dto.getTitle());
-        note.setContent(dto.getContent());
+        if (dto.getTitle() != null && !dto.getTitle().isBlank()) {
+            note.setTitle(dto.getTitle());
+        }
+
+        if (dto.getContent() != null && !dto.getContent().isBlank()) {
+            note.setContent(dto.getContent());
+        }
 
         return toResponseDTO(noteRepository.save(note));
     }
-
+    
     public void delete(Long id){
+        if (!noteRepository.existsById(id)) {
+            throw new ResourceNotFoundException("Note not found");
+        }
         noteRepository.deleteById(id);
     }
+
 }
