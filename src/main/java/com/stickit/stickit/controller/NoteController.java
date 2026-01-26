@@ -1,7 +1,12 @@
 package com.stickit.stickit.controller;
 
+import com.stickit.stickit.dto.NoteRequestDTO;
 import com.stickit.stickit.model.Note;
 import com.stickit.stickit.service.NoteService;
+import jakarta.validation.Valid;
+import org.aspectj.weaver.ast.Not;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,8 +21,11 @@ public class NoteController {
     }
 
     @PostMapping
-    public Note createNote(@RequestBody Note note) {
-        return noteService.create(note.getTitle(), note.getContent());
+    public ResponseEntity<Note> create(
+            @RequestBody @Valid NoteRequestDTO dto
+    ) {
+        Note note = noteService.create(dto);
+        return new ResponseEntity.status(HttpStatus.CREATED).body(note);
     }
 
     @GetMapping

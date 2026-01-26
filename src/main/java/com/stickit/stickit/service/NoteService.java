@@ -1,5 +1,6 @@
 package com.stickit.stickit.service;
 
+import com.stickit.stickit.dto.NoteRequestDTO;
 import com.stickit.stickit.model.Note;
 import com.stickit.stickit.repository.NoteRepository;
 import org.springframework.stereotype.Service;
@@ -14,8 +15,8 @@ public class NoteService {
         this.noteRepository = noteRepository;
     }
 
-    public Note create(String title, String content){
-        Note note = new Note(title, content);
+    public Note create(NoteRequestDTO dto){
+        Note note = new Note(dto.getTitle(), dto.getContent());
         return noteRepository.save(note);
     }
 
