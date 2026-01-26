@@ -1,6 +1,7 @@
 package com.stickit.stickit.controller;
 
 import com.stickit.stickit.dto.NoteRequestDTO;
+import com.stickit.stickit.dto.NoteResponseDTO;
 import com.stickit.stickit.model.Note;
 import com.stickit.stickit.service.NoteService;
 import jakarta.validation.Valid;
@@ -21,11 +22,11 @@ public class NoteController {
     }
 
     @PostMapping
-    public ResponseEntity<Note> create(
+    public ResponseEntity<NoteResponseDTO> create(
             @RequestBody @Valid NoteRequestDTO dto
     ) {
-        Note note = noteService.create(dto);
-        return ResponseEntity.status(HttpStatus.CREATED).body(note);
+        NoteResponseDTO response = noteService.create(dto);
+        return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
     @GetMapping
