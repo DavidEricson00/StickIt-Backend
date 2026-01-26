@@ -30,13 +30,15 @@ public class NoteController {
     }
 
     @GetMapping
-    public List<Note> getAllNotes() {
+    public List<NoteResponseDTO> getAllNotes() {
         return noteService.findAll();
     }
 
     @PutMapping("/{id}")
-    public Note updateNote(@PathVariable Long id, @RequestBody Note note) {
-        return noteService.update(id, note.getTitle(), note.getContent());
+    public NoteResponseDTO updateNote(
+            @PathVariable Long id,
+            @RequestBody @Valid NoteRequestDTO dto) {
+        return noteService.update(id, dto);
     }
 
     @DeleteMapping("/{id}")

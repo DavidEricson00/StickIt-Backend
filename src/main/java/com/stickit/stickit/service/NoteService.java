@@ -34,18 +34,21 @@ public class NoteService {
         return toResponseDTO(saved);
     }
 
-    public List<Note> findAll(){
-        return  noteRepository.findAll();
+    public List<NoteResponseDTO> findAll(){
+        return noteRepository.findAll()
+                .stream()
+                .map(this::toResponseDTO)
+                .toList();
     }
 
-    public Note update(Long id, String title, String content){
+    public NoteResponseDTO update(Long id, NoteRequestDTO dto){
         Note note = noteRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Note not found"));
 
-        note.setTitle(title);
-        note.setContent(content);
+        note.setTitle(dto.getTitle());
+        note.setContent(dto.getContent());
 
-        return noteRepository.save(note);
+        return toResponseDTO(noteRepository.save(note));
     }
 
     public void delete(Long id){
