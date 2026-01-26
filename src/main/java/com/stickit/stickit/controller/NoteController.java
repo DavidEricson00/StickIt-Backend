@@ -25,7 +25,7 @@ public class NoteController {
             @RequestBody @Valid NoteRequestDTO dto
     ) {
         Note note = noteService.create(dto);
-        return new ResponseEntity.status(HttpStatus.CREATED).body(note);
+        return ResponseEntity.status(HttpStatus.CREATED).body(note);
     }
 
     @GetMapping
