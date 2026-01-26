@@ -2,6 +2,7 @@ package com.stickit.stickit.service;
 
 import com.stickit.stickit.dto.NoteRequestDTO;
 import com.stickit.stickit.dto.NoteResponseDTO;
+import com.stickit.stickit.exception.ResourceNotFoundException;
 import com.stickit.stickit.model.Note;
 import com.stickit.stickit.repository.NoteRepository;
 import org.springframework.stereotype.Service;
@@ -43,7 +44,7 @@ public class NoteService {
 
     public NoteResponseDTO update(Long id, NoteRequestDTO dto){
         Note note = noteRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Note not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("Note not found"));
 
         note.setTitle(dto.getTitle());
         note.setContent(dto.getContent());
