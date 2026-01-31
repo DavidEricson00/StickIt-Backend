@@ -15,7 +15,7 @@ public class Note {
     @Column(nullable = true)
     private String content;
 
-
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private NoteColor color;
 
