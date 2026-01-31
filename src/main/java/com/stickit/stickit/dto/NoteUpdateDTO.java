@@ -1,12 +1,14 @@
 package com.stickit.stickit.dto;
 
+import com.stickit.stickit.model.NoteColor;
+
 public class NoteUpdateDTO {
 
-    private String title;
+    private NoteColor color;
     private String content;
 
-    public String getTitle() {
-        return title;
+    public NoteColor getColor() {
+        return color;
     }
 
     public String getContent() {

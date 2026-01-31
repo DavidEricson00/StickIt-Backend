@@ -1,16 +1,18 @@
 package com.stickit.stickit.dto;
 
+import com.stickit.stickit.model.NoteColor;
+
 import java.time.LocalDateTime;
 
 public class NoteResponseDTO {
     private Long id;
-    private String title;
+    private NoteColor color;
     private String content;
     private LocalDateTime createdAt;
 
-    public NoteResponseDTO(Long id, String title, String content, LocalDateTime createdAt) {
+    public NoteResponseDTO(Long id, NoteColor color, String content, LocalDateTime createdAt) {
         this.id = id;
-        this.title = title;
+        this.color = color;
         this.content = content;
         this.createdAt = createdAt;
     }
@@ -19,8 +21,8 @@ public class NoteResponseDTO {
         return id;
     }
     
-    public String getTitle() {
-        return title;
+    public NoteColor getColor() {
+        return color;
     }
 
     public String getContent() {
