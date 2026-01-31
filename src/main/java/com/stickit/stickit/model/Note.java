@@ -12,11 +12,12 @@ public class Note {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
-    private String title;
+    @Column(nullable = true)
+    private String content;
+
 
     @Column(nullable = false)
-    private String content;
+    private NoteColor color;
 
     @Column(nullable = false)
     private LocalDateTime createdAt;
@@ -24,22 +25,14 @@ public class Note {
     public Note() {
     }
 
-    public Note(String title, String content) {
-        this.title = title;
+    public Note(String content, NoteColor color) {
         this.content = content;
+        this.color = color;
         this.createdAt = LocalDateTime.now();
     }
 
     public Long getId() {
         return id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
     }
 
     public String getContent() {
@@ -48,6 +41,14 @@ public class Note {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public NoteColor getColor() {
+        return color;
+    }
+
+    public void setColor(NoteColor color) {
+        this.color = color;
     }
 
     public LocalDateTime getCreatedAt() {
