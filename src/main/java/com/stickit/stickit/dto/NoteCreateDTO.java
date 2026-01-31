@@ -1,10 +1,10 @@
 package com.stickit.stickit.dto;
 
 import com.stickit.stickit.model.NoteColor;
-import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 public class NoteCreateDTO {
-    @NotBlank(message = "Color is required")
+    @NotNull(message = "Color is required")
     private NoteColor color;
 
     private String content;
