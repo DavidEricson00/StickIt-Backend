@@ -21,7 +21,7 @@ public class NoteService {
     private NoteResponseDTO toResponseDTO(Note note) {
         return new NoteResponseDTO(
                 note.getId(),
-                note.getTitle(),
+                note.getColor(),
                 note.getContent(),
                 note.getCreatedAt()
         );
@@ -29,7 +29,7 @@ public class NoteService {
 
     public NoteResponseDTO create(NoteCreateDTO dto){
         Note note = new Note();
-        note.setTitle(dto.getTitle());
+        note.setColor(dto.getColor());
         note.setContent(dto.getContent());
 
         Note saved = noteRepository.save(note);
@@ -47,8 +47,8 @@ public class NoteService {
         Note note = noteRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Note not found"));
 
-        if (dto.getTitle() != null && !dto.getTitle().isBlank()) {
-            note.setTitle(dto.getTitle());
+        if (dto.getColor() != null) {
+            note.setColor(dto.getColor());
         }
 
         if (dto.getContent() != null && !dto.getContent().isBlank()) {
