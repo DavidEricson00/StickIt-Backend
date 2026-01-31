@@ -2,14 +2,16 @@
 
 A clean and production-ready REST API built with Spring Boot, focused on correct architecture, clear responsibilities, and frontend integration readiness.
 
----
-
 ## 🚀 Overview
 
 StickIt API is a backend service for managing notes, designed with professional backend practices in mind.  
 The project emphasizes clean architecture, validation, error handling, and proper HTTP semantics.
 
----
+## 🔗 Frontend Application
+
+The frontend application that consumes this API is available at:
+
+https://github.com/DavidEricson00/StickIt-Frontend
 
 ## 🛠 Technologies
 
@@ -22,8 +24,6 @@ The project emphasizes clean architecture, validation, error handling, and prope
 - Bean Validation (Jakarta Validation)  
 - Maven  
 
----
-
 ## 🧱 Architecture & Design Principles
 
 - Layered architecture  
@@ -34,8 +34,6 @@ The project emphasizes clean architecture, validation, error handling, and prope
 - Clear separation of concerns  
 - No business logic inside controllers  
 - No direct entity exposure to the API  
-
----
 
 ## 📦 Data Transfer Objects (DTOs)
 
@@ -51,15 +49,11 @@ This ensures:
 - Better validation control  
 - No accidental data exposure  
 
----
-
 ## ✅ Validation
 
 - Bean Validation annotations  
 - Context-aware validation  
 - Mandatory fields enforced only where appropriate (e.g. create vs update)  
-
----
 
 ## ❗ Global Error Handling
 
@@ -78,9 +72,6 @@ Example error response format:
   "path": "/notes/99"
 }
 ```
-
----
-
 ## 🔐 CORS Ready
 
 CORS configuration prepared for frontend integration, allowing clean communication with a separate frontend application.
